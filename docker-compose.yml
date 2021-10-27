@@ -3,7 +3,7 @@ version: '3.9'
 services:
 
   cribl-leader:
-    image: ${CRIBL_IMAGE:-cribl/cribl:3.1.1}
+    image: ${CRIBL_IMAGE:-cribl/cribl:latest}
     environment:
       - CRIBL_DIST_MODE=master
       - CRIBL_DIST_MASTER_URL=tcp://criblmaster@0.0.0.0:4200
@@ -14,7 +14,7 @@ services:
       - "cribl-config:/opt/cribl/config-volume"
 
   cribl-worker:
-    image: ${CRIBL_IMAGE:-cribl/cribl:3.1.1}
+    image: ${CRIBL_IMAGE:-cribl/cribl:latest}
     depends_on:
       - cribl-leader
     environment:
@@ -24,12 +24,12 @@ services:
       - 9000
 
   redis:
-    image: ${REDIS_IMAGE:-redis:6.2.5}
+    image: ${REDIS_IMAGE:-redis:latest}
     ports:
       - 6379:6379
 
   splunk-so:
-    image: ${SPLUNK_IMAGE:-splunk/splunk:8.2.2}
+    image: ${SPLUNK_IMAGE:-splunk/splunk:latest}
     environment:
       - SPLUNK_START_ARGS=--accept-license
       - SPLUNK_PASSWORD=changem3N0w!
